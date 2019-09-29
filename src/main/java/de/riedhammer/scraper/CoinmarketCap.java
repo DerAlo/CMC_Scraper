@@ -53,8 +53,8 @@ public class CoinmarketCap {
             doc = Jsoup.connect(String.format(url, coinName, start, end)).get();
         } catch (HttpStatusException ex) {
             if (ex.getStatusCode() == 429) {
-                System.err.println("TOO MANY REQUESTS -> retry "+coinName);
-                Thread.sleep(10000);
+                System.err.println("TOO MANY REQUESTS -> retry "+coinName+" in 75sec");
+                Thread.sleep(75000);
                 scrape(coinName);
             } else if (ex.getStatusCode() == 404)
                 System.err.println("No Data for " + coinName + " in that time"); //offensichtlich hat cmc nicht für alles immer daten?!?
